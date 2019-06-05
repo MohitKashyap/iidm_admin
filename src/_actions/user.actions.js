@@ -6,7 +6,7 @@ export const userActions = {
     logout
 };
 
-function login(username, password){
+function login(username, password) {
     return dispatch => {
         let apiEndpoint = 'auths';
         let payload = {
@@ -14,19 +14,23 @@ function login(username, password){
             password: password
         }
         userService.post(apiEndpoint, payload)
-        .then((response)=>{
-            console.log(response.data);
-            if (response.data.token) {
-                localStorage.setItem('token', response.data.token);
-                localStorage.setItem('auth', response.data.auth);
-                dispatch(setUserDetails(response.data));
-                history.push('/home');
-            }
-        })
+            .then((response) => {
+
+                if (response && response.data.token) {
+                    console.log(response.data);
+                    localStorage.setItem('token', response.data.token);
+                    localStorage.setItem('auth', response.data.auth);
+                    dispatch(setUserDetails(response.data));
+                    history.push('/home');
+                } else {
+                    dispatch(setUserFailedDetails({ isFailed: true }));
+                    history.push('/');
+                }
+            });
     };
 }
 
-function logout(){
+function logout() {
     return dispatch => {
         localStorage.removeItem('auth');
         localStorage.removeItem('token');
@@ -35,16 +39,26 @@ function logout(){
     }
 }
 
-export function setUserDetails(user){
-    return{
+export function setUserDetails(user) {
+    return {
         type: "LOGIN_SUCCESS",
         auth: user.auth,
         token: user.token
     }
 }
 
-export function logoutUser(){
-    return{
+
+export function setUserFailedDetails(user) {
+    return {
+        type: "LOGIN_FAILED",
+        auth: false,
+        token: ''
+    }
+}
+
+
+export function logoutUser() {
+    return {
         type: "LOGOUT_SUCCESS",
         auth: false,
         token: ''

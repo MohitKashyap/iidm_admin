@@ -12,6 +12,8 @@ class Login extends Component {
       username: '',
       password: '',
       showPassword: false,
+      invalidUserName: false,
+      invalidPassword: false
     }
   }
   componentWillReceiveProps(nextProps) {
@@ -38,6 +40,12 @@ class Login extends Component {
     const { dispatch } = this.props;
     if (username && password) {
       dispatch(userActions.login(username, password));
+    } else {
+      if (!username) {
+        this.setState({ invalidUserName: true });
+      } else {
+        this.setState({ invalidPassword: true });
+      }
     }
   }
 
@@ -59,7 +67,7 @@ class Login extends Component {
                             <i className="icon-user"></i>
                           </InputGroupText>
                         </InputGroupAddon>
-                        <Input type="text" placeholder="Username" autoComplete="username" autoFocus onChange={this.handleChange('username')} />
+                        <Input type="text" invalid={this.state.invalidUserName} placeholder="Username" autoComplete="username" autoFocus onChange={this.handleChange('username')} required />
                       </InputGroup>
                       <InputGroup className="mb-4">
                         <InputGroupAddon addonType="prepend">
@@ -67,7 +75,7 @@ class Login extends Component {
                             <i className="icon-lock"></i>
                           </InputGroupText>
                         </InputGroupAddon>
-                        <Input type="password" placeholder="Password" autoComplete="current-password" onChange={this.handleChange('password')} />
+                        <Input type="password" invalid={this.state.invalidPassword} placeholder="Password" autoComplete="current-password" onChange={this.handleChange('password')} required />
                       </InputGroup>
                       <Row>
                         <Col xs="6">

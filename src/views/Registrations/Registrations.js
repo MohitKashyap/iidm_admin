@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
-import { Badge, Card, CardBody, CardHeader, Col, Row, Table } from 'reactstrap';
+import { Button, Card, CardBody, CardHeader, Col, Row, Table } from 'reactstrap';
 import { connect } from 'react-redux';
 import { registrationAction } from '../../_actions';
 
@@ -8,20 +8,28 @@ function UserRow(props) {
     const user = props.user
     const userLink = `/registrationDetail/${user._id}`
 
-    const getBadge = (status) => {
-        return status === 'Active' ? 'success' :
-            status === 'Inactive' ? 'secondary' :
-                status === 'Pending' ? 'warning' :
-                    status === 'Banned' ? 'danger' :
-                        'primary'
-    }
+    // const getBadge = (status) => {
+    //     return status === 'Active' ? 'success' :
+    //         status === 'Inactive' ? 'secondary' :
+    //             status === 'Pending' ? 'warning' :
+    //                 status === 'Banned' ? 'danger' :
+    //                     'primary'
+    // }
 
     return (
         <tr key={user._id.toString()}>
             <td><Link to={userLink}>{user.name}</Link></td>
             <td>{user.email}</td>
             <td>{user.mobile}</td>
-            <td><Link to={userLink}><Badge color={getBadge(user.status)}>{user.status}</Badge></Link></td>
+            <td>{user.qualification}</td>
+            <td>{user.gender}</td>
+            <td>{user.address}</td>
+            <td>
+                <Link to={userLink}>
+                    <Button size="sm" color="ghost-success" >  <i className="fa fa-pencil fa-lg" color="success" title="Edit"></i></Button>
+                    <Button size="sm" color="ghost-danger" ><i className="fa fa-remove fa-lg " color="danger" title="Delete"></i>   </Button>
+                </Link>
+            </td>
         </tr>
     )
 }
@@ -65,7 +73,10 @@ class Registrations extends Component {
                                             <th scope="col">Name</th>
                                             <th scope="col">Email</th>
                                             <th scope="col">Mobile</th>
-                                            <th scope="col">status</th>
+                                            <th scope="col">Qualification</th>
+                                            <th scope="col">Gender</th>
+                                            <th scope="col">Address</th>
+                                            <th scope="col">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>

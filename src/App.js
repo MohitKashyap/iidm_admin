@@ -17,13 +17,14 @@ const Login = React.lazy(() => import('./views/Pages/Login'));
 // const Page500 = React.lazy(() => import('./views/Pages/Page500'));
 // const Vendor = React.lazy(() => import('./vendors/vendor.component'));
 //const Registrations = React.lazy(() => import('./views/Registrations'));
-const PrivateRoute = ({ component: Component, ...rest }) => (
-  <Route {...rest} render={props => (
-    localStorage.getItem('auth')
-      ? <Component {...props} />
-      : <Redirect to={{ pathname: '/', state: { from: props.location } }} />
-  )} />
-)
+// const PrivateRoute = ({ component: Component, ...rest }) => (
+//   <Route {...rest} render={props => (
+//     localStorage.getItem('auth')
+//       ? <Component {...props} />
+//       : <Redirect to={{ pathname: '/', state: { from: props.location } }} />
+//   )} />
+//)
+
 class App extends Component {
   render() {
     return (
@@ -37,8 +38,8 @@ class App extends Component {
             {/* <Route exact path="/register" name="Register Page" render={props => <Register {...props} />} />
             <Route exact path="/404" name="Page 404" render={props => <Page404 {...props} />} />
             <Route exact path="/500" name="Page 500" render={props => <Page500 {...props} />} /> */}
-            <PrivateRoute path="/" name="Home" component={DefaultLayout} />
-            <PrivateRoute exact path='/registrations' component={Registrations} />
+            <Route path="/" name="Home" render={props => <DefaultLayout {...props} />} />
+            <Route exact path='/registrations' render={props => <Registrations {...props} />} />
           </Switch>
         </React.Suspense>
       </HashRouter>

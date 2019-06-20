@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { HashRouter, Route, Switch, Redirect } from 'react-router-dom';
+import { HashRouter, Route, Switch } from 'react-router-dom';
 // import { renderRoutes } from 'react-router-config';
 import './App.scss';
 import Registrations from "./views/Registrations";
@@ -16,14 +16,14 @@ const Login = React.lazy(() => import('./views/Pages/Login'));
 // const Page404 = React.lazy(() => import('./views/Pages/Page404'));
 // const Page500 = React.lazy(() => import('./views/Pages/Page500'));
 // const Vendor = React.lazy(() => import('./vendors/vendor.component'));
-//const Registrations = React.lazy(() => import('./views/Registrations'));
+// const Registrations = React.lazy(() => import('./views/Registrations'));
 // const PrivateRoute = ({ component: Component, ...rest }) => (
 //   <Route {...rest} render={props => (
 //     localStorage.getItem('auth')
 //       ? <Component {...props} />
 //       : <Redirect to={{ pathname: '/', state: { from: props.location } }} />
 //   )} />
-//)
+//) 
 
 class App extends Component {
   render() {

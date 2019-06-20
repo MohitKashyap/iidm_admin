@@ -1,26 +1,26 @@
 import React, { Component } from 'react';
 import {
-    Badge,
+    // Badge,
     Button,
     Card,
     CardBody,
     CardFooter,
     CardHeader,
     Col,
-    Collapse,
-    DropdownItem,
-    DropdownMenu,
-    DropdownToggle,
-    Fade,
+    // Collapse,
+    // DropdownItem,
+    // DropdownMenu,
+    // DropdownToggle,
+    // Fade,
     Form,
     FormGroup,
-    FormText,
-    FormFeedback,
+    // FormText,
+    // FormFeedback,
     Input,
-    InputGroup,
-    InputGroupAddon,
-    InputGroupButtonDropdown,
-    InputGroupText,
+    // InputGroup,
+    // InputGroupAddon,
+    // InputGroupButtonDropdown,
+    // InputGroupText,
     Label,
     Row,
 } from 'reactstrap';
@@ -50,193 +50,129 @@ class Forms extends Component {
         return (
             <div className="animated fadeIn">
                 <Row>
-                    <Col xs="12" md="6">
+                    <Col xs="12" md="12" sm="12">
                         <Card>
                             <CardHeader>
-                                <strong>Basic Form</strong> Elements
+                                <strong>New Registration</strong> Form
               </CardHeader>
                             <CardBody>
                                 <Form action="" method="post" encType="multipart/form-data" className="form-horizontal">
-
                                     <FormGroup row>
                                         <Col md="3">
-                                            <Label htmlFor="text-input">Name</Label>
+                                            <Label htmlFor="name">Name</Label>
                                         </Col>
                                         <Col xs="12" md="9">
-                                            <Input type="text" id="text-input" name="text-input" placeholder="Enter your name" />
-                                            {/* <FormText color="muted">This is a help text</FormText> */}
+                                            <Input type="text" id="name" name="name" placeholder="Enter your name" />
                                         </Col>
                                     </FormGroup>
                                     <FormGroup row>
                                         <Col md="3">
-                                            <Label htmlFor="text-input">Email</Label>
+                                            <Label htmlFor="email">Email</Label>
                                         </Col>
                                         <Col xs="12" md="9">
-                                            <Input type="text" id="text-input" name="text-input" placeholder="Text" />
-                                            {/* <FormText color="muted">This is a help text</FormText> */}
+                                            <Input type="email" id="email" name="email" placeholder="Enter your email" autoComplete="email" />
                                         </Col>
                                     </FormGroup>
                                     <FormGroup row>
                                         <Col md="3">
-                                            <Label htmlFor="text-input">Mobile Number</Label>
+                                            <Label htmlFor="mobile">Mobile Number</Label>
                                         </Col>
                                         <Col xs="12" md="9">
-                                            <Input type="text" id="text-input" name="text-input" placeholder="Text" />
-                                            {/* <FormText color="muted">This is a help text</FormText> */}
+                                            <Input type="text" id="mobile" name="mobile" placeholder="Enter your mobile number" />
                                         </Col>
                                     </FormGroup>
                                     <FormGroup row>
                                         <Col md="3">
-                                            <Label htmlFor="text-input">Text Input</Label>
+                                            <Label htmlFor="dob">Date of birth </Label>
                                         </Col>
                                         <Col xs="12" md="9">
-                                            <Input type="text" id="text-input" name="text-input" placeholder="Text" />
-                                            <FormText color="muted">This is a help text</FormText>
+                                            <Input type="date" id="dob" name="dob" placeholder="Date of birth" />
                                         </Col>
                                     </FormGroup>
                                     <FormGroup row>
                                         <Col md="3">
-                                            <Label htmlFor="email-input">Email Input</Label>
+                                            <Label htmlFor="address-input">Address</Label>
                                         </Col>
                                         <Col xs="12" md="9">
-                                            <Input type="email" id="email-input" name="email-input" placeholder="Enter Email" autoComplete="email" />
-                                            <FormText className="help-block">Please enter your email</FormText>
+                                            <Input type="text" id="address-input" name="address-input" placeholder="Enter your address" />
                                         </Col>
                                     </FormGroup>
                                     <FormGroup row>
                                         <Col md="3">
-                                            <Label htmlFor="password-input">Password</Label>
+                                            <Label htmlFor="qualification">Qualification</Label>
                                         </Col>
                                         <Col xs="12" md="9">
-                                            <Input type="password" id="password-input" name="password-input" placeholder="Password" autoComplete="new-password" />
-                                            <FormText className="help-block">Please enter a complex password</FormText>
+                                            <Input type="text" id="qualification" name="qualification-input" placeholder="Enter qualification" />
                                         </Col>
                                     </FormGroup>
                                     <FormGroup row>
                                         <Col md="3">
-                                            <Label htmlFor="date-input">Date Input <Badge>NEW</Badge></Label>
+                                            <Label htmlFor="organization">Organization</Label>
                                         </Col>
                                         <Col xs="12" md="9">
-                                            <Input type="date" id="date-input" name="date-input" placeholder="date" />
+                                            <Input type="text" id="organization" name="organization" placeholder="Enter your organization" />
                                         </Col>
                                     </FormGroup>
                                     <FormGroup row>
                                         <Col md="3">
-                                            <Label htmlFor="disabled-input">Disabled Input</Label>
+                                            <Label htmlFor="service">Service</Label>
                                         </Col>
                                         <Col xs="12" md="9">
-                                            <Input type="text" id="disabled-input" name="disabled-input" placeholder="Disabled" disabled />
+                                            <Input type="text" id="service" name="service" placeholder="Enter your service" />
                                         </Col>
                                     </FormGroup>
                                     <FormGroup row>
                                         <Col md="3">
-                                            <Label htmlFor="textarea-input">Textarea</Label>
+                                            <Label htmlFor="experience">Experience</Label>
                                         </Col>
                                         <Col xs="12" md="9">
-                                            <Input type="textarea" name="textarea-input" id="textarea-input" rows="9"
-                                                placeholder="Content..." />
+                                            <Input type="text" id="experience" name="experience" placeholder="Enter your experience" />
                                         </Col>
                                     </FormGroup>
                                     <FormGroup row>
                                         <Col md="3">
-                                            <Label htmlFor="select">Select</Label>
+                                            <Label htmlFor="select">Gender</Label>
                                         </Col>
                                         <Col xs="12" md="9">
                                             <Input type="select" name="select" id="select">
                                                 <option value="0">Please select</option>
-                                                <option value="1">Option #1</option>
-                                                <option value="2">Option #2</option>
-                                                <option value="3">Option #3</option>
+                                                <option value="1">Male</option>
+                                                <option value="2">Female</option>
+                                                <option value="3">Other</option>
                                             </Input>
                                         </Col>
                                     </FormGroup>
                                     <FormGroup row>
                                         <Col md="3">
-                                            <Label htmlFor="selectLg">Select Large</Label>
-                                        </Col>
-                                        <Col xs="12" md="9" size="lg">
-                                            <Input type="select" name="selectLg" id="selectLg" bsSize="lg">
-                                                <option value="0">Please select</option>
-                                                <option value="1">Option #1</option>
-                                                <option value="2">Option #2</option>
-                                                <option value="3">Option #3</option>
-                                            </Input>
-                                        </Col>
-                                    </FormGroup>
-                                    <FormGroup row>
-                                        <Col md="3">
-                                            <Label htmlFor="selectSm">Select Small</Label>
-                                        </Col>
-                                        <Col xs="12" md="9">
-                                            <Input type="select" name="selectSm" id="SelectLm" bsSize="sm">
-                                                <option value="0">Please select</option>
-                                                <option value="1">Option #1</option>
-                                                <option value="2">Option #2</option>
-                                                <option value="3">Option #3</option>
-                                                <option value="4">Option #4</option>
-                                                <option value="5">Option #5</option>
-                                            </Input>
-                                        </Col>
-                                    </FormGroup>
-                                    <FormGroup row>
-                                        <Col md="3">
-                                            <Label htmlFor="disabledSelect">Disabled Select</Label>
-                                        </Col>
-                                        <Col xs="12" md="9">
-                                            <Input type="select" name="disabledSelect" id="disabledSelect" disabled autoComplete="name">
-                                                <option value="0">Please select</option>
-                                                <option value="1">Option #1</option>
-                                                <option value="2">Option #2</option>
-                                                <option value="3">Option #3</option>
-                                            </Input>
-                                        </Col>
-                                    </FormGroup>
-                                    <FormGroup row>
-                                        <Col md="3">
-                                            <Label htmlFor="multiple-select">Multiple select</Label>
+                                            <Label htmlFor="multiple-select">Course</Label>
                                         </Col>
                                         <Col md="9">
                                             <Input type="select" name="multiple-select" id="multiple-select" multiple>
-                                                <option value="1">Option #1</option>
-                                                <option value="2">Option #2</option>
-                                                <option value="3">Option #3</option>
-                                                <option value="4">Option #4</option>
-                                                <option value="5">Option #5</option>
-                                                <option value="6">Option #6</option>
-                                                <option value="7">Option #7</option>
-                                                <option value="8">Option #8</option>
-                                                <option value="9">Option #9</option>
-                                                <option value="10">Option #10</option>
+                                                <option value="1">AUTOCAD</option>
+                                                <option value="2">3DS MAX</option>
+                                                <option value="3">VRAY</option>
+                                                <option value="4">PHOTOSHOP</option>
+                                                <option value="5">GOOGLE SKETCHUP</option>
                                             </Input>
                                         </Col>
                                     </FormGroup>
                                     <FormGroup row>
                                         <Col md="3">
-                                            <Label>Radios</Label>
+                                            <Label htmlFor="comment">Comment</Label>
                                         </Col>
-                                        <Col md="9">
-                                            <FormGroup check className="radio">
-                                                <Input className="form-check-input" type="radio" id="radio1" name="radios" value="option1" />
-                                                <Label check className="form-check-label" htmlFor="radio1">Option 1</Label>
-                                            </FormGroup>
-                                            <FormGroup check className="radio">
-                                                <Input className="form-check-input" type="radio" id="radio2" name="radios" value="option2" />
-                                                <Label check className="form-check-label" htmlFor="radio2">Option 2</Label>
-                                            </FormGroup>
-                                            <FormGroup check className="radio">
-                                                <Input className="form-check-input" type="radio" id="radio3" name="radios" value="option3" />
-                                                <Label check className="form-check-label" htmlFor="radio3">Option 3</Label>
-                                            </FormGroup>
+                                        <Col xs="12" md="9">
+                                            <Input type="textarea" name="comment" id="comment" rows="9"
+                                                placeholder="Content..." />
                                         </Col>
                                     </FormGroup>
-                                    <FormGroup row>
+                                    {/* <FormGroup row>
                                         <Col md="3">
-                                            <Label>Inline Radios</Label>
+                                            <Label>Possibility of conversion</Label>
                                         </Col>
                                         <Col md="9">
                                             <FormGroup check inline>
                                                 <Input className="form-check-input" type="radio" id="inline-radio1" name="inline-radios" value="option1" />
-                                                <Label className="form-check-label" check htmlFor="inline-radio1">One</Label>
+                                                <Label className="form-check-label" check htmlFor="inline-radio1">Very High</Label>
                                             </FormGroup>
                                             <FormGroup check inline>
                                                 <Input className="form-check-input" type="radio" id="inline-radio2" name="inline-radios" value="option2" />
@@ -244,8 +180,24 @@ class Forms extends Component {
                                             </FormGroup>
                                             <FormGroup check inline>
                                                 <Input className="form-check-input" type="radio" id="inline-radio3" name="inline-radios" value="option3" />
-                                                <Label className="form-check-label" check htmlFor="inline-radio3">Three</Label>
+                                                <Label className="form-check-label" check htmlFor="inline-radio3">Medium</Label>
                                             </FormGroup>
+                                            <FormGroup check inline>
+                                                <Input className="form-check-input" type="radio" id="inline-radio4" name="inline-radios" value="option3" />
+                                                <Label className="form-check-label" check htmlFor="inline-radio4">Low</Label>
+                                            </FormGroup>
+                                            <FormGroup check inline>
+                                                <Input className="form-check-input" type="radio" id="inline-radio5" name="inline-radios" value="option3" />
+                                                <Label className="form-check-label" check htmlFor="inline-radio5">Not Interested</Label>
+                                            </FormGroup>
+                                        </Col>
+                                    </FormGroup>
+                                    <FormGroup row>
+                                        <Col md="3">
+                                            <Label htmlFor="dob">Next follow up date </Label>
+                                        </Col>
+                                        <Col xs="12" md="9">
+                                            <Input type="date" id="followup" name="followup" placeholder="Date of birth" />
                                         </Col>
                                     </FormGroup>
                                     <FormGroup row>
@@ -299,7 +251,7 @@ class Forms extends Component {
                                         <Col xs="12" md="9">
                                             <Input type="file" id="file-multiple-input" name="file-multiple-input" multiple />
                                         </Col>
-                                    </FormGroup>
+                                    </FormGroup> */}
                                 </Form>
                             </CardBody>
                             <CardFooter>

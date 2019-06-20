@@ -51,6 +51,7 @@ function onChangeProps(props, value) {
         dispatch(handleOnChangeProps(props, value));
     }
 }
+
 function editRegistrationInfo(id, payload) {
     return dispatch => {
         let apiEndpoint = 'vendors/' + id;

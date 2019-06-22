@@ -56,8 +56,10 @@ function editRegistrationInfo(id, payload) {
         let apiEndpoint = 'vendors/' + id;
         userService.put(apiEndpoint, payload)
             .then((response) => {
-                dispatch(updatedUserInfo());
-                history.push('/registrations');
+                if (response) {
+                    dispatch(updatedUserInfo());
+                    history.push('/registrations');
+                }
             })
     }
 }

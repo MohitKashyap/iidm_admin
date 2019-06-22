@@ -1,21 +1,22 @@
-import { userService } from '../_services';
+import { queryService } from '../_services';
 import { history } from '../_helpers';
 
-export const registrationAction = {
-    getRegistration,
-    getRegistrationById,
+export const queryAction = {
+    getQuery,
+    getQueryById,
     onChangeProps,
-    editRegistrationInfo,
-    createRegistration,
-    deleteRegistrationById
+    editQueryInfo,
+    editCourseInfo,
+    createQuery,
+    deleteQueryById
 };
-function getRegistration() {
+function getQuery() {
     return dispatch => {
-        let apiEndpoint = 'vendors';
-        userService.get(apiEndpoint)
+        let apiEndpoint = 'query';
+        queryService.get(apiEndpoint)
             .then((response) => {
                 console.log(response);
-                dispatch(changeRegistrationsList(response.data.data));
+                dispatch(changeQueryList(response.data.data));
             }).catch((err) => {
                 console.log("Error");
                 console.log(err);
@@ -23,25 +24,25 @@ function getRegistration() {
     };
 }
 
-function createRegistration(payload, callback) {
+function createQuery(payload, callback) {
     return dispatch => {
-        let apiEndpoint = 'vendors/';
-        userService.post(apiEndpoint, payload)
+        let apiEndpoint = 'query/';
+        queryService.post(apiEndpoint, payload)
             .then((response) => {
-                dispatch(createUserInfo());
+                dispatch(createQueryInfo());
                 // history.push('/register');
                 callback();
             })
     }
 }
 
-function getRegistrationById(id) {
+function getQueryById(id) {
 
     return dispatch => {
-        let apiEndpoint = 'vendors/' + id;
-        userService.get(apiEndpoint)
+        let apiEndpoint = 'query/' + id;
+        queryService.get(apiEndpoint)
             .then((response) => {
-                dispatch(editRegistrationsDetails(response.data.data));
+                dispatch(editQueryDetails(response.data.data));
             })
     };
 }
@@ -52,29 +53,41 @@ function onChangeProps(props, value) {
     }
 }
 
-function editRegistrationInfo(id, payload) {
+function editQueryInfo(id, payload) {
     return dispatch => {
-        let apiEndpoint = 'vendors/' + id;
-        userService.put(apiEndpoint, payload)
+        let apiEndpoint = 'query/' + id;
+        queryService.put(apiEndpoint, payload)
             .then((response) => {
-                dispatch(updatedUserInfo());
-                history.push('/registrations');
+                dispatch(updatedQueryInfo());
+                history.push('/queries');
             })
     }
 }
 
-function deleteRegistrationById(id) {
+function editCourseInfo(payload) {
     return dispatch => {
-        let apiEndpoint = 'vendors/' + id;
-        userService.deleteDetail(apiEndpoint)
+        let apiEndpoint = 'query/updateCourse/' + payload.id;
+        queryService.put(apiEndpoint, payload)
             .then((response) => {
-                dispatch(deleteRegistrationsDetails());
-                dispatch(registrationAction.getRegistration());
+                if (response) {
+                    dispatch(updatedQueryInfo());
+                    history.push('/queries');
+                }
+            })
+    }
+}
+function deleteQueryById(id) {
+    return dispatch => {
+        let apiEndpoint = 'query/' + id;
+        queryService.deleteDetail(apiEndpoint)
+            .then((response) => {
+                dispatch(deleteQueryDetails());
+                dispatch(queryAction.getQuery());
             })
     };
 }
 
-export function changeRegistrationsList(registration) {
+export function changeQueryList(registration) {
     return {
         type: "FETECHED_ALL_REGISTRATION",
         registration: registration
@@ -89,7 +102,7 @@ export function handleOnChangeProps(props, value) {
     }
 }
 
-export function editRegistrationsDetails(registration) {
+export function editQueryDetails(registration) {
     return {
         type: "REGISTRATION_DETAIL",
         id: registration._id,
@@ -108,19 +121,19 @@ export function editRegistrationsDetails(registration) {
     }
 }
 
-export function updatedUserInfo() {
+export function updatedQueryInfo() {
     return {
-        type: "USER_UPDATED"
+        type: "QUERY_UPDATED"
     }
 }
 
-export function createUserInfo() {
+export function createQueryInfo() {
     return {
-        type: "USER_CREATED_SUCCESSFULLY"
+        type: "QUERY_CREATED_SUCCESSFULLY"
     }
 }
 
-export function deleteRegistrationsDetails() {
+export function deleteQueryDetails() {
     return {
         type: "DELETED_REGISTRATION_DETAILS"
     }

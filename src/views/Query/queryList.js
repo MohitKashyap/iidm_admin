@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import cs from "classnames";
+import Courses from "../../Courses";
 import {
     Button,
     Row,
@@ -19,7 +20,7 @@ import {
     Label,
 } from 'reactstrap';
 import { connect } from 'react-redux';
-import { registrationAction, followupAction } from '../../_actions';
+import { followupAction, queryAction } from '../../_actions';
 
 class QueryList extends Component {
     constructor(props) {
@@ -32,28 +33,28 @@ class QueryList extends Component {
 
         this.toggle = this.toggle.bind(this);
     }
-    toggle(queryId) {
+    toggle = (queryId) => {
         this.setState({
             modal: !this.state.modal,
             queryId: queryId
         });
     }
-    courseModalToggle(queryId) {
+    courseModalToggle = (queryId) => {
         this.setState({
-            modal: !this.state.courseModal,
+            courseModal: !this.state.courseModal,
             queryId: queryId
         });
     }
 
     componentDidMount() {
         const { dispatch } = this.props;
-        dispatch(registrationAction.getRegistration());
+        dispatch(queryAction.getQuery());
     }
 
     handleClick = (event, id) => {
         console.log(id);
         const { dispatch } = this.props;
-        dispatch(registrationAction.deleteRegistrationById(id))
+        dispatch(queryAction.deleteQueryById(id))
     };
     addFollowUp = () => {
         let payload = {
@@ -72,7 +73,7 @@ class QueryList extends Component {
             }));
         }
     }
-    toggleSuccess() {
+    toggleSuccess = () => {
         this.setState({
             success: !this.state.success,
         });
@@ -98,17 +99,17 @@ class QueryList extends Component {
         const value = event.target.value;
         dispatch(followupAction.onChangeProps(prop, value));
     }
-    updateQuery() {
+    updateCourse = () => {
         let payload = {
-            queryId: this.state.queryId,
+            id: this.state.queryId,
             course: this.props.query.course,
         }
-        if (!payload.status) {
-            payload.status = "Not Interested";
+        if (!payload.course) {
+            this.setState({ isValidCourse: this.state.isValidCourse });
         }
         if (this.props.query.course) {
-            this.props.dispatch(registrationAction.editRegistrationInfo(payload, () => {
-                this.toggle();
+            this.props.dispatch(queryAction.editCourseInfo(payload, () => {
+                this.courseModalToggle();
                 this.toggleSuccess();
             }));
         }
@@ -116,38 +117,43 @@ class QueryList extends Component {
     handleCourseChange = prop => event => {
         const { dispatch } = this.props;
         const value = event.target.value;
-        dispatch(registrationAction.onChangeProps(prop, value));
+        dispatch(queryAction.onChangeProps(prop, value));
     }
     render() {
-
-        // const userList = usersData.filter((user) => user.id < 10)
         const { registration: { registration: list } } = this.props;
-        const UserRow = (props) => {
-            const user = props.user
-            const userLink = `/registrationDetail/${user._id}`
+        const QueryRow = (props) => {
+            const query = props.query
+            const queryLink = `/queryDetail/${query._id}`
+            const courseName = Courses.find(
+                (item) => {
+                    let name = "";
+                    if (item.Id === query.course) {
+                        name = item.Name;
+                    } return name;
+                });
 
             return (
-                <tr key={user._id.toString()}>
-                    <td><Link to={userLink}>{user.name}</Link></td>
-                    <td>{user.email}</td>
-                    <td>{user.mobile}</td>
-                    <td>{user.qualification}</td>
-                    <td>{user.gender}</td>
-                    <td>{user.address}</td>
+                <tr key={query._id.toString()}>
+                    <td><Link to={queryLink}>{query.name}</Link></td>
+                    <td>{query.email}</td>
+                    <td>{query.mobile}</td>
+                    <td>{courseName.Name}</td>
+                    <td>{query.qualification}</td>
+                    <td>{query.gender}</td>
+                    <td>{query.address}</td>
                     <td>
-                        <Button size="sm" color="ghost-warning" onClick={this.toggle.bind(this, user._id.toString())}>  <i className="fa fa-calendar fa-lg" color="warning" title="FollowUp"></i></Button>
-                        <Button size="sm" color="ghost-success" onClick={this.courseModalToggle.bind(this, user._id.toString())}>  <i className="fa fa-pencil fa-lg" color="success" title="Edit"></i></Button>
-                        <Link to={userLink}>
-
+                        <Button size="sm" color="ghost-warning" onClick={this.toggle.bind(this, query._id.toString())}>  <i className="fa fa-calendar fa-lg" color="warning" title="FollowUp"></i></Button>
+                        <Button size="sm" color="ghost-success" onClick={this.courseModalToggle.bind(this, query._id.toString())}>  <i className="fa fa-plus fa-lg" color="success" title="Add Course"></i></Button>
+                        {/* <Link to={queryLink}>
                             <Button size="sm" color="ghost-danger" ><i className="fa fa-remove fa-lg " color="danger" title="Delete"></i>   </Button>
-                        </Link>
+                        </Link> */}
                     </td>
-                </tr>
+                </tr >
             )
         }
 
         return (
-            <div className="animated fadeIn">
+            <div className="animated fadeIn" >
                 <Row>
                     <Col xl={12}>
                         <Card>
@@ -161,6 +167,7 @@ class QueryList extends Component {
                                             <th scope="col">Name</th>
                                             <th scope="col">Email</th>
                                             <th scope="col">Mobile</th>
+                                            <th scope="col">Course</th>
                                             <th scope="col">Qualification</th>
                                             <th scope="col">Gender</th>
                                             <th scope="col">Address</th>
@@ -168,8 +175,8 @@ class QueryList extends Component {
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {list && list.map((user, index) =>
-                                            <UserRow key={index} user={user} />
+                                        {list && list.map((query, index) =>
+                                            <QueryRow key={index} query={query} />
                                         )}
                                     </tbody>
                                 </Table>
@@ -251,7 +258,7 @@ class QueryList extends Component {
                                                 <Label htmlFor="multiple-select">Course</Label>
                                             </Col>
                                             <Col md="9">
-                                                <Input type="select" name="course" id="course" multiple>
+                                                <Input type="select" name="course" id="course" multiple onChange={this.handleCourseChange("course")}>
                                                     <option value="1">AUTOCAD</option>
                                                     <option value="2">3DS MAX</option>
                                                     <option value="3">VRAY</option>
@@ -265,8 +272,8 @@ class QueryList extends Component {
                             </div>
                         </ModalBody>
                         <ModalFooter>
-                            <Button type="button" color="primary" onClick={this.updateQuery}>Add</Button>{' '}
-                            <Button color="secondary" onClick={this.courseModalToggle}>Cancel</Button>
+                            <Button type="button" color="primary" onClick={this.updateCourse}>Add</Button>{' '}
+                            <Button color="secondary" onClick={this.courseModalToggle.bind(this)}>Cancel</Button>
                         </ModalFooter>
                     </Form>
                 </Modal>
@@ -288,7 +295,8 @@ class QueryList extends Component {
 const mapStateToProps = (state) => {
     return {
         registration: state.registration,
-        followup: state.followup
+        followup: state.followup,
+        query: state.query
     };
 }
 

@@ -137,7 +137,7 @@ class QueryList extends Component {
                     <td><Link to={queryLink}>{query.name}</Link></td>
                     <td>{query.email}</td>
                     <td>{query.mobile}</td>
-                    <td>{courseName.Name}</td>
+                    <td>{courseName ? courseName.Name : ""}</td>
                     <td>{query.qualification}</td>
                     <td>{query.gender}</td>
                     <td>{query.address}</td>
@@ -171,7 +171,7 @@ class QueryList extends Component {
                                             <th scope="col">Qualification</th>
                                             <th scope="col">Gender</th>
                                             <th scope="col">Address</th>
-                                            <th scope="col">Action</th>
+                                            <th scope="col">Actions</th>
                                         </tr>
                                     </thead>
                                     <tbody>

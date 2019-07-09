@@ -102,22 +102,23 @@ export function handleOnChangeProps(props, value) {
     }
 }
 
-export function editQueryDetails(registration) {
+export function editQueryDetails(query) {
     return {
-        type: "REGISTRATION_DETAIL",
-        id: registration._id,
-        name: registration.name,
-        mobile: registration.mobile,
-        email: registration.email,
-        address: registration.address,
-        dob: registration.dob,
-        gender: registration.gender,
-        qualification: registration.qualification,
-        working: registration.working,
-        experience: registration.experience,
-        organisation: registration.organisation,
-        service: registration.service,
-        CreatedOn: registration.createdAt
+        type: "QUERY_DETAIL",
+        id: query._id,
+        name: query.name,
+        mobile: query.mobile,
+        email: query.email,
+        address: query.address,
+        dob: query.dob,
+        gender: query.gender,
+        qualification: query.qualification,
+        working: query.working,
+        experience: query.experience,
+        organisation: query.organisation,
+        service: query.service,
+        course: query.course,
+        CreatedOn: query.createdAt
     }
 }
 

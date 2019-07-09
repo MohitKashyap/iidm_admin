@@ -24,6 +24,11 @@ export default {
       icon: 'icon-question',
     },
     {
+      name: 'QueryDetail',
+      url: '/queryDetail',
+      icon: 'icon-question',
+    },
+    {
       title: true,
       name: 'Follow Up',
       wrapper: {            // optional wrapper object

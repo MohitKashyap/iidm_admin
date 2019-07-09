@@ -50,12 +50,6 @@ class QueryList extends Component {
         const { dispatch } = this.props;
         dispatch(queryAction.getQuery());
     }
-
-    handleClick = (event, id) => {
-        console.log(id);
-        const { dispatch } = this.props;
-        dispatch(queryAction.deleteQueryById(id))
-    };
     addFollowUp = () => {
         let payload = {
             queryId: this.state.queryId,

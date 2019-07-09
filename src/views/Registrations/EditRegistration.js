@@ -29,10 +29,10 @@ class Forms extends Component {
         };
     }
     componentDidMount() {
-        // const { dispatch, match } = this.props;
-        // if (match && match.params) {
-        //     dispatch(registrationAction.getRegistrationById(match.params.id));
-        // }
+        const { dispatch, match } = this.props;
+        if (match && match.params) {
+            dispatch(registrationAction.getRegistrationById(match.params.id));
+        }
     }
 
     handleChange = prop => event => {
@@ -66,7 +66,7 @@ class Forms extends Component {
                                             <Label htmlFor="name">Name</Label>
                                         </Col>
                                         <Col xs="12" md="9">
-                                            <Input type="text" id="name" name="name" placeholder="Enter your name" onChange={this.handleChange("name")} />
+                                            <Input type="text" id="name" name="name" placeholder="Enter your name" value={registration.name} onChange={this.handleChange("name")} />
                                         </Col>
                                     </FormGroup>
                                     <FormGroup row>
@@ -74,8 +74,7 @@ class Forms extends Component {
                                             <Label htmlFor="email">Email</Label>
                                         </Col>
                                         <Col xs="12" md="9">
-                                            <Input type="email" id="email" name="email" placeholder="Enter your email" autoComplete="email"
-                                                onChange={this.handleChange("email")} />
+                                            <Input type="email" id="email" name="email" placeholder="Enter your email" autoComplete="email" value={registration.email} onChange={this.handleChange("email")} />
                                         </Col>
                                     </FormGroup>
                                     <FormGroup row>
@@ -83,7 +82,7 @@ class Forms extends Component {
                                             <Label htmlFor="mobile">Mobile Number</Label>
                                         </Col>
                                         <Col xs="12" md="9">
-                                            <Input type="text" id="mobile" name="mobile" placeholder="Enter your mobile number" onChange={this.handleChange("mobile")} />
+                                            <Input type="text" id="mobile" name="mobile" placeholder="Enter your mobile number" value={registration.mobile} onChange={this.handleChange("mobile")} />
                                         </Col>
                                     </FormGroup>
                                     <FormGroup row>
@@ -91,7 +90,7 @@ class Forms extends Component {
                                             <Label htmlFor="dob">Date of birth </Label>
                                         </Col>
                                         <Col xs="12" md="9">
-                                            <Input type="date" id="dob" name="dob" placeholder="Date of birth" />
+                                            <Input type="date" id="dob" name="dob" placeholder="Date of birth" value={registration.dob} />
                                         </Col>
                                     </FormGroup>
                                     <FormGroup row>
@@ -99,7 +98,7 @@ class Forms extends Component {
                                             <Label htmlFor="address">Address</Label>
                                         </Col>
                                         <Col xs="12" md="9">
-                                            <Input type="text" id="address-input" name="address" placeholder="Enter your address" onChange={this.handleChange("address")} />
+                                            <Input type="text" id="address-input" name="address" placeholder="Enter your address" value={registration.address} onChange={this.handleChange("address")} />
                                         </Col>
                                     </FormGroup>
                                     <FormGroup row>
@@ -107,7 +106,7 @@ class Forms extends Component {
                                             <Label htmlFor="qualification">Qualification</Label>
                                         </Col>
                                         <Col xs="12" md="9">
-                                            <Input type="text" id="qualification" name="qualification" placeholder="Enter qualification" onChange={this.handleChange("qualification")} />
+                                            <Input type="text" id="qualification" name="qualification" placeholder="Enter qualification" value={registration.qualification} onChange={this.handleChange("qualification")} />
                                         </Col>
                                     </FormGroup>
                                     <FormGroup row>
@@ -115,7 +114,7 @@ class Forms extends Component {
                                             <Label htmlFor="organization">Organization</Label>
                                         </Col>
                                         <Col xs="12" md="9">
-                                            <Input type="text" id="organization" name="organization" placeholder="Enter your organization" onChange={this.handleChange("organization")} />
+                                            <Input type="text" id="organization" name="organization" placeholder="Enter your organization" value={registration.organization} onChange={this.handleChange("organization")} />
                                         </Col>
                                     </FormGroup>
                                     <FormGroup row>
@@ -123,7 +122,7 @@ class Forms extends Component {
                                             <Label htmlFor="service">Service</Label>
                                         </Col>
                                         <Col xs="12" md="9">
-                                            <Input type="text" id="service" name="service" placeholder="Enter your service" onChange={this.handleChange("service")} />
+                                            <Input type="text" id="service" name="service" placeholder="Enter your service" value={registration.service} onChange={this.handleChange("service")} />
                                         </Col>
                                     </FormGroup>
                                     <FormGroup row>
@@ -131,7 +130,7 @@ class Forms extends Component {
                                             <Label htmlFor="experience">Experience</Label>
                                         </Col>
                                         <Col xs="12" md="9">
-                                            <Input type="text" id="experience" name="experience" placeholder="Enter your experience" onChange={this.handleChange("experience")} />
+                                            <Input type="text" id="experience" name="experience" placeholder="Enter your experience" value={registration.experience} onChange={this.handleChange("experience")} />
                                         </Col>
                                     </FormGroup>
                                     <FormGroup row>
@@ -139,7 +138,7 @@ class Forms extends Component {
                                             <Label htmlFor="gender">Gender</Label>
                                         </Col>
                                         <Col xs="12" md="9">
-                                            <Input type="select" name="gender" id="gender" onChange={this.handleChange("gender")} >
+                                            <Input type="select" name="gender" id="gender" value={registration.gender} onChange={this.handleChange("gender")} >
                                                 <option value="select">Please select</option>
                                                 <option value="Male">Male</option>
                                                 <option value="Female">Female</option>
@@ -152,7 +151,7 @@ class Forms extends Component {
                                             <Label htmlFor="course">Course</Label>
                                         </Col>
                                         <Col md="9">
-                                            <Input type="select" name="course" id="course" multiple onChange={this.handleChange("course")}>
+                                            <Input type="select" name="course" id="course" multiple value={registration.course} onChange={this.handleChange("course")}>
                                                 <option value="1">AUTOCAD</option>
                                                 <option value="2">3DS MAX</option>
                                                 <option value="3">VRAY</option>
@@ -167,7 +166,7 @@ class Forms extends Component {
                                         </Col>
                                         <Col xs="12" md="9">
                                             <Input type="textarea" name="comment" id="comment" rows="9"
-                                                placeholder="Content..." onChange={this.handleChange("comment")} />
+                                                placeholder="Content..." onChange={this.handleChange("comment")} value={registration.comment} />
                                         </Col>
                                     </FormGroup>
                                     {/* <FormGroup row>

@@ -37,19 +37,25 @@ const Users = React.lazy(() => import('./views/Users/Users'));
 const User = React.lazy(() => import('./views/Users/User'));
 const Registrations = React.lazy(() => import('./views/Registrations'));
 const Queries = React.lazy(() => import('./views/Query'));
+const QueryDetail = React.lazy(() => import('./views/Query/queryDetail'));
 const Followups = React.lazy(() => import('./views/Followup'));
 const RegistrationDetail = React.lazy(() => import('./views/Registrations/RegistrationDetail'));
+const Recipt = React.lazy(() => import('./views/Registrations/Recipt'));
 const NewRegistration = React.lazy(() => import('./views/Registrations/NewRegistration'));
+const EditRegistration = React.lazy(() => import('./views/Registrations/EditRegistration'));
 
 // https://github.com/ReactTraining/react-router/tree/master/packages/react-router-config
 const routes = [
   { path: '/', exact: true, name: 'Home' },
   { path: '/dashboard', name: 'Dashboard', component: Dashboard },
-  { path: '/queries', name: 'Queries', component: Queries },
+  { path: '/queries', exact: true, name: 'Queries', component: Queries },
+  { path: '/queryDetail/:id', name: 'QueryDetail', component: QueryDetail },
   { path: '/followups', name: 'FollowUps', component: Followups },
   { path: '/registrations', name: 'Registrations', component: Registrations },
-  { path: '/registrationDetail/:id', name: 'Registrations', component: RegistrationDetail },
-  { path: '/newRegistration', name: 'NewRegistration', component: NewRegistration },
+  { path: '/registrations/registrationDetail/:id', name: 'Registrations', component: RegistrationDetail },
+  { path: '/recipt/:id', name: 'Recipt', component: Recipt },
+  { path: '/newRegistration/', name: 'NewRegistration', component: NewRegistration },
+  { path: '/editRegistration/:id', name: 'EditRegistration', component: EditRegistration },
   { path: '/theme', exact: true, name: 'Theme', component: Colors },
   { path: '/theme/colors', name: 'Colors', component: Colors },
   { path: '/theme/typography', name: 'Typography', component: Typography },

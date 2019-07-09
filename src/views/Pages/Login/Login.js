@@ -26,7 +26,7 @@ class Login extends Component {
   componentDidMount() {
     console.log(this.props);
     if (localStorage.getItem('auth')) {
-      history.push('/home');
+      history.push('/login');
     }
   }
 

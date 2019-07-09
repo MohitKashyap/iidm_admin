@@ -41,7 +41,8 @@ function getRegistrationById(id) {
         let apiEndpoint = 'vendors/' + id;
         userService.get(apiEndpoint)
             .then((response) => {
-                dispatch(editRegistrationsDetails(response.data.data));
+                if (response && response.data)
+                    dispatch(editRegistrationsDetails(response.data.data));
             })
     };
 }

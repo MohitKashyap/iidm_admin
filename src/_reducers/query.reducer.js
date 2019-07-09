@@ -12,7 +12,6 @@ const initialState = {
     gender: ''
 };
 
-
 export function query(state = initialState, action) {
     switch (action.type) {
         case 'FETECHED_ALL_QUERY':

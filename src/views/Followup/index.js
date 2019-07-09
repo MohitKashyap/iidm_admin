@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import { Link, withRouter } from 'react-router-dom';
-import { Button, Card, CardBody, CardHeader, Col, Row, Table, Badge } from 'reactstrap';
+import { withRouter } from 'react-router-dom';
+import { Card, CardBody, CardHeader, Col, Row, Table, Badge } from 'reactstrap';
 import { connect } from 'react-redux';
 import { followupAction } from '../../_actions';
 
 function FollowUp(props) {
     const followup = props.followup
-    const followupLink = `/followupDetail/${followup._id}`
+    //const followupLink = `/followupDetail/${followup._id}`
 
     const getBadge = (status) => {
         return status === 'Very High' ? 'success' :
@@ -22,12 +22,12 @@ function FollowUp(props) {
             <td>{new Date(followup.followupDate).toLocaleString()}</td>
             <td>{followup.comment}</td>
             <td><Badge color={getBadge(followup.status)}>{followup.status}</Badge></td>
-            <td>
+            {/* <td>
                 <Link to={followupLink}>
                     <Button size="sm" color="ghost-success" >  <i className="fa fa-pencil fa-lg" color="success" title="Edit"></i></Button>
                     <Button size="sm" color="ghost-danger" ><i className="fa fa-remove fa-lg " color="danger" title="Delete"></i>   </Button>
                 </Link>
-            </td>
+            </td> */}
         </tr>
     )
 }
@@ -71,7 +71,7 @@ class FollowUps extends Component {
                                             <th scope="col">Follow Up Date</th>
                                             <th scope="col">Comment</th>
                                             <th scope="col">Status</th>
-                                            <th scope="col">Action</th>
+                                            {/* <th scope="col">Action</th> */}
                                         </tr>
                                     </thead>
                                     <tbody>

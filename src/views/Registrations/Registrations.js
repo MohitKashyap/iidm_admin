@@ -6,8 +6,9 @@ import { registrationAction } from '../../_actions';
 
 function UserRow(props) {
     const user = props.user
-    const userLink = `/registrationDetail/${user._id}`
-
+    const detail = `/registrationDetail/${user._id}`
+    const reciptLink = `/recipt/${user._id}`
+    const editLink = `/editRegistration/${user._id}`
     // const getBadge = (status) => {
     //     return status === 'Active' ? 'success' :
     //         status === 'Inactive' ? 'secondary' :
@@ -18,16 +19,23 @@ function UserRow(props) {
 
     return (
         <tr key={user._id.toString()}>
-            <td><Link to={userLink}>{user.name}</Link></td>
+            <td><Link to={detail}>{user.name}</Link></td>
             <td>{user.email}</td>
             <td>{user.mobile}</td>
             <td>{user.qualification}</td>
             <td>{user.gender}</td>
             <td>{user.address}</td>
             <td>
-                <Link to={userLink}>
+                <Link to={editLink}>
+                    <Button size="sm" color="ghost-success" >  <i className="fa fa-pencil fa-lg" color="success" title="Edit"></i></Button>
+                    {/* <Button size="sm" color="ghost-danger" ><i className="fa fa-remove fa-lg " color="danger" title="Delete"></i>   </Button> */}
+                </Link>
+                {/* <Link to={userLink}>
                     <Button size="sm" color="ghost-success" >  <i className="fa fa-pencil fa-lg" color="success" title="Edit"></i></Button>
                     <Button size="sm" color="ghost-danger" ><i className="fa fa-remove fa-lg " color="danger" title="Delete"></i>   </Button>
+                </Link> */}
+                <Link to={reciptLink}>
+                    <Button size="sm" color="ghost-gray" >  <i className="fa fa-vcard fa-lg" color="gray" title="Recipt"></i></Button>
                 </Link>
             </td>
         </tr>

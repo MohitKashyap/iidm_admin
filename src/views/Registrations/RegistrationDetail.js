@@ -85,9 +85,12 @@ const mapStateToProps = (state) => {
     };
 }
 
-const connectedRegistrationDetail = withRouter(connect(mapStateToProps, null, null, {
-    pure: false
-})(RegistrationDetail));
+const connectedRegistrationDetail = withRouter(connect(mapStateToProps,
+    null,
+    null,
+    {
+        pure: false
+    })(RegistrationDetail));
 
 export default connectedRegistrationDetail;
 // export default RegistrationDetail;

@@ -30,7 +30,11 @@ export function registration(state = initialState, action) {
                 address: action.address,
                 dob: action.dob,
                 email: action.email,
-                gender: action.gender
+                gender: action.gender,
+                experience: action.experience,
+                organisation: action.organisation,
+                service: action.service,
+                course: action.course
             };
         case "USER_UPDATED":
             return state;

@@ -36,7 +36,6 @@ function createRegistration(payload, callback) {
 }
 
 function getRegistrationById(id) {
-
     return dispatch => {
         let apiEndpoint = 'vendors/' + id;
         userService.get(apiEndpoint)

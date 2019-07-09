@@ -64,7 +64,7 @@ function editQueryInfo(id, payload) {
     }
 }
 
-function editCourseInfo(payload) {
+function editCourseInfo(payload, callback) {
     return dispatch => {
         let apiEndpoint = 'query/updateCourse/' + payload.id;
         queryService.put(apiEndpoint, payload)

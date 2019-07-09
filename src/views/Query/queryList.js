@@ -28,7 +28,9 @@ class QueryList extends Component {
         this.state = {
             modal: false,
             success: false,
-            courseModal: false
+            courseModal: false,
+            Title: "",
+            Message: ""
         };
 
         this.toggle = this.toggle.bind(this);
@@ -63,13 +65,15 @@ class QueryList extends Component {
         if (this.isValid() && this.state.queryId) {
             this.props.dispatch(followupAction.createFollowup(payload, () => {
                 this.toggle();
-                this.toggleSuccess();
+                this.toggleSuccess("Follow up", "Follow up created successfully.");
             }));
         }
     }
-    toggleSuccess = () => {
+    toggleSuccess = (title, message) => {
         this.setState({
             success: !this.state.success,
+            Title: title,
+            Message: message
         });
     }
 
@@ -102,10 +106,9 @@ class QueryList extends Component {
             this.setState({ isValidCourse: this.state.isValidCourse });
         }
         if (this.props.query.course) {
-            this.props.dispatch(queryAction.editCourseInfo(payload, () => {
-                this.courseModalToggle();
-                this.toggleSuccess();
-            }));
+            this.props.dispatch(queryAction.editCourseInfo(payload));
+            this.courseModalToggle();
+            this.toggleSuccess("Update Course", "Course updated successfully.");
         }
     }
     handleCourseChange = prop => event => {
@@ -266,17 +269,17 @@ class QueryList extends Component {
                             </div>
                         </ModalBody>
                         <ModalFooter>
-                            <Button type="button" color="primary" onClick={this.updateCourse}>Add</Button>{' '}
+                            <Button type="button" color="primary" onClick={this.updateCourse}>Add</Button>
                             <Button color="secondary" onClick={this.courseModalToggle.bind(this)}>Cancel</Button>
                         </ModalFooter>
                     </Form>
                 </Modal>
                 <Modal isOpen={this.state.success} toggle={this.toggleSuccess}
                     className={'modal-success ' + this.props.className}>
-                    <ModalHeader toggle={this.toggleSuccess}>Follow up</ModalHeader>
+                    <ModalHeader toggle={this.toggleSuccess}>{this.state.Title} </ModalHeader>
                     <ModalBody>
-                        Follow up created successfully.
-                  </ModalBody>
+                        {this.state.Message}
+                    </ModalBody>
                     <ModalFooter>
                         <Button color="secondary" onClick={this.toggleSuccess}>Ok</Button>
                     </ModalFooter>

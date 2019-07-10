@@ -1,8 +1,8 @@
 import React, { Component, Suspense } from 'react';
-import { Redirect, Route, Switch } from 'react-router-dom';
+import { Redirect, Route, Switch, withRouter } from 'react-router-dom';
 import * as router from 'react-router-dom';
+import { connect } from 'react-redux';
 import { Container } from 'reactstrap';
-
 import {
   AppAside,
   AppFooter,
@@ -19,6 +19,7 @@ import {
 import navigation from '../../_nav';
 // routes config
 import routes from '../../routes';
+import { userActions } from '../../_actions';
 
 const DefaultAside = React.lazy(() => import('./DefaultAside'));
 const DefaultFooter = React.lazy(() => import('./DefaultFooter'));
@@ -30,12 +31,20 @@ class DefaultLayout extends Component {
 
   signOut(e) {
     e.preventDefault()
-    this.props.history.push('/login')
+    const { dispatch } = this.props;
+    dispatch(userActions.logout());
+    // this.props.history.push('/login')
+  }
+  renderRedirect = () => {
+    if (!this.props.loggingIn) {
+      return <Redirect to='/login' />
+    }
   }
 
   render() {
     return (
       <div className="app">
+        {this.renderRedirect()}
         <AppHeader fixed>
           <Suspense fallback={this.loading()}>
             <DefaultHeader onLogout={e => this.signOut(e)} />
@@ -89,4 +98,17 @@ class DefaultLayout extends Component {
   }
 }
 
-export default DefaultLayout;
+
+const mapStateToProps = (state) => {
+  const { loggingIn } = state.authentication;
+  return {
+    loggingIn
+  };
+}
+
+const connectedLayout = withRouter(connect(mapStateToProps, null, null, {
+  pure: false
+})(DefaultLayout));
+
+
+export default connectedLayout;

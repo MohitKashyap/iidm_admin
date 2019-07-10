@@ -4,7 +4,8 @@ import { Button, Card, CardBody, CardGroup, Col, Container, Form, Input, InputGr
 import { connect } from 'react-redux';
 import { userActions } from '../../../_actions';
 import { history } from '../../../_helpers';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Redirect } from 'react-router-dom';
+
 class Login extends Component {
   constructor(props) {
     super(props);
@@ -48,10 +49,17 @@ class Login extends Component {
       }
     }
   }
+  renderRedirect = () => {
+    if (this.props.loggingIn) {
+      return <Redirect to='/dashboard' />
+    }
+  }
 
   render() {
+
     return (
       <div className="app flex-row align-items-center">
+        {this.renderRedirect()}
         <Container>
           <Row className="justify-content-center">
             <Col md="8">

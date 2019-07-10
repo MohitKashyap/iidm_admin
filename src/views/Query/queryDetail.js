@@ -55,10 +55,10 @@ class QueryDetail extends Component {
                             </CardHeader>
                             <CardBody>
                                 <Jumbotron>
-                                    <Col sm="12" md={{ size: 6, offset: 5 }}>
+                                    {/* <Col sm="12" md={{ size: 6, offset: 5 }}>
                                         <img src={'assets/img/avatars/1.jpg'} className="img-avatar rounded " alt="admin@bootstrapmaster.com" />
                                     </Col>
-                                    <hr />
+                                    <hr /> */}
 
                                     <Table responsive>
                                         <tbody>

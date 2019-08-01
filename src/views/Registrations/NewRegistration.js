@@ -50,7 +50,7 @@ class Forms extends Component {
     }
 
     render() {
-        const { registration } = this.props;
+        //  const { registration } = this.props;
         return (
             <div className="animated fadeIn">
                 <Row>

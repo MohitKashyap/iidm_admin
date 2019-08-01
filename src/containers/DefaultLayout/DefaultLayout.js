@@ -31,14 +31,14 @@ class DefaultLayout extends Component {
 
   signOut(e) {
     e.preventDefault()
-    const { dispatch } = this.props;
-    dispatch(userActions.logout());
-    // this.props.history.push('/login')
+    //const { dispatch } = this.props;
+    //dispatch(userActions.logout());
+    this.props.history.push('/login')
   }
   renderRedirect = () => {
-    if (!this.props.loggingIn) {
-      return <Redirect to='/login' />
-    }
+    // if (!this.props.loggingIn) {
+    //   return <Redirect to='/login' />
+    // }
   }
 
   render() {
